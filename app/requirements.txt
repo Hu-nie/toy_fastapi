@@ -1,0 +1,3 @@
+fastapi
+basketball_reference_web_scraper
+uvicorn[standard]
