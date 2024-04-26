@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 @router.get('/')
-def welcome():
+async def welcome():
     """
     API 가동 상태 확인 엔드포인트.
     """
@@ -29,12 +29,11 @@ def player_stats(date: date = Query(...), name: Optional[str] = None):
     - **player_name**: 조회할 플레이어 이름 (선택적).
     """
     stats_scraper = BasketballStats(client, OutputType.JSON, date)
+    
     if name:
         stats = stats_scraper.specific_player_stats(name)
     else:
         stats = stats_scraper.daily_player_stats()
-    thread_id = threading.get_ident()  # 현재 스레드 ID를 가져옵니다
-    logging.info(f"Handling request in thread {thread_id}")  # 로깅
     
     return JSONResponse(content=stats)
 
