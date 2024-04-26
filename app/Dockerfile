@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 8000
 # Uvicorn으로 FastAPI 애플리케이션 실행, `app`은 FastAPI 인스턴스를 포함하는 파일명
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
